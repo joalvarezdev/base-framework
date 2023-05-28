@@ -12,6 +12,10 @@ public class BaseJPADAO<REP extends GenericRepository<ENT, PK>, ENT, PK> impleme
 
     private REP repository;
 
+    public BaseJPADAO(REP repository) {
+        this.repository = repository;
+    }
+
     @Override
     public Optional<ENT> findById(PK id) {
         return this.repository.findById(id);
@@ -46,8 +50,4 @@ public class BaseJPADAO<REP extends GenericRepository<ENT, PK>, ENT, PK> impleme
         return this.repository;
     }
 
-    @Autowired
-    public void setRepository(REP repository) {
-        this.repository = repository;
-    }
 }
