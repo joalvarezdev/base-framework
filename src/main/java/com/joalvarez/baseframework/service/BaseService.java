@@ -3,12 +3,12 @@ package com.joalvarez.baseframework.service;
 import com.joalvarez.baseframework.data.dao.GenericDAO;
 import com.joalvarez.baseframework.data.mapper.GenericMapper;
 import com.joalvarez.baseframework.utils.HasLogger;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceException;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 

@@ -1,20 +1,12 @@
 package com.joalvarez.baseframework.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
-
-@EnableSwagger2
 @Configuration
 public class SwaggerConfig {
 
@@ -26,16 +18,20 @@ public class SwaggerConfig {
     private String version;
 
     @Bean
-    public Docket api() {
-        return (new Docket(DocumentationType.SWAGGER_2))
-                .select()
-                .apis(
-                        RequestHandlerSelectors
-                                .withClassAnnotation(RestController.class)
-                )
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(new ApiInfo(this.name, this.description, this.version, "TermsOfService",
-                        new Contact("", "", ""), "license", "licenseUrl", new ArrayList<>()));
+    public OpenAPI api() {
+        Contact contact = new Contact();
+        contact.email("alvarez.joaquinez@gmail.com");
+        contact.setUrl("https://github.com/joalvarezdev");
+        contact.setName("joalvarez");
+
+        Info info = new Info();
+
+        info.setTitle(this.name);
+        info.description(this.description);
+        info.setVersion(this.version);
+        info.setContact(contact);
+
+        return new OpenAPI()
+                .info(info);
     }
 }

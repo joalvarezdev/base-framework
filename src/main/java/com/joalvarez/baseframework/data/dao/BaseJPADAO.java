@@ -1,9 +1,8 @@
 package com.joalvarez.baseframework.data.dao;
 
 import com.joalvarez.baseframework.data.repository.GenericRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
